@@ -17,3 +17,19 @@ jobs:
         env:
           PR_TITLE: ${{ github.event.pull_request.title }}
         run: echo pr_title "$PR_TITLE"
+
+      - name: Only run if PR was merged
+        if: github.event.pull_request.merged == true
+        run: echo "PR was merged"
+
+      - name: only run if PR title contains "Services Upgrade Request"
+        if: contains(github.event.pull_request.title, 'Services Upgrade Request')
+        run: echo "PR title contains 'Services Upgrade Request'"
+
+      - name: only run if PR was merged and services upgrade request in title
+        if: and(github.event.pull_request.merged == true, contains(github.event.pull_request.title, 'Services Upgrade Request'))
+        run: echo "PR was merged and PR title contains 'Services Upgrade Request'"
+
+      - name: only run if PR was merged and services upgrade request in title 2
+        if: github.event.pull_request.merged == true && contains(github.event.pull_request.title, 'Services Upgrade Request')
+        run: echo "PR was merged and PR title contains 'Services Upgrade Request'"
