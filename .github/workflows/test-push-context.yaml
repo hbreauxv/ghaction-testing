@@ -3,6 +3,8 @@ name: Test PR Context
 on:
   pull_request:
     types: [closed]
+  paths:
+    - "clusters/services/*"
 
 jobs:
   one:
