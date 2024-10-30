@@ -27,9 +27,5 @@ jobs:
         run: echo "PR title contains 'Services Upgrade Request'"
 
       - name: only run if PR was merged and services upgrade request in title
-        if: and(github.event.pull_request.merged == true, contains(github.event.pull_request.title, 'Services Upgrade Request'))
-        run: echo "PR was merged and PR title contains 'Services Upgrade Request'"
-
-      - name: only run if PR was merged and services upgrade request in title 2
         if: github.event.pull_request.merged == true && contains(github.event.pull_request.title, 'Services Upgrade Request')
         run: echo "PR was merged and PR title contains 'Services Upgrade Request'"
