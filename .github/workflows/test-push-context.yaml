@@ -1,9 +1,8 @@
 name: Test PR Context
 
 on:
-  push:
-    branchs:
-      - main
+  pull_request:
+    types: [closed]
 
 jobs:
   one:
@@ -13,3 +12,8 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: echo "$GITHUB_CONTEXT"
+
+      - name: Dump PR title
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: echo pr_title "$PR_TITLE"
