@@ -1,8 +1,9 @@
 name: Test PR Context
 
-on:                                          
-  pull_request:
-    types: [closed]
+on:
+  push:
+    branchs:
+      - main
 
 jobs:
   one:
