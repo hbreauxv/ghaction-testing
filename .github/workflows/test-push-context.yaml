@@ -20,6 +20,20 @@ jobs:
           PR_TITLE: ${{ github.event.pull_request.title }}
         run: echo pr_title "$PR_TITLE"
 
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v45
+        with:
+          files: |
+             **.ver
+
+      - name: echo changed files
+        id: echo_changed_files
+        env:
+          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        run: |
+          echo $ALL_CHANGED_FILES
+
       - name: Only run if PR was merged
         if: github.event.pull_request.merged == true
         run: echo "PR was merged"
