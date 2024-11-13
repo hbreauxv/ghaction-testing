@@ -5,6 +5,7 @@ on:
     types: [closed]
     paths:
       - "clusters/services/*"
+      - "clusters/prod.testing/services/*"
 
 jobs:
   one:
