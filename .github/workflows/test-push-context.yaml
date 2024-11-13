@@ -2,7 +2,10 @@ name: Test PR Context
 
 on:
   pull_request:
-    types: [closed]
+    types: 
+      - closed
+    branches:
+      - "AK-48261-release-test"
     paths:
       - "clusters/services/*"
       - "clusters/prod.testing/services/*"
