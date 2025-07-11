@@ -1,0 +1,26 @@
+name: Port Scan Prod IPs
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  scan-ips:
+    runs-on:
+      labels: ubuntu-latest
+
+    steps:
+      - name: install masscan
+        run: |
+          sudo apt-get update
+          sudo apt-get --assume-yes install git make gcc libpcap-dev
+          git clone https://github.com/robertdavidgraham/masscan
+          cd masscan
+          make
+          sudo make install -j
+
+      - name: scan ips
+        run: |
+          masscan -oJ - 1.1.1.1,8.8.8.8 -p80,23,443,21,22 --max-rate 1000
+
+  
